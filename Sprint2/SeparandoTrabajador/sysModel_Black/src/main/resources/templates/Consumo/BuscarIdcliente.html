@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout}">
+<!-- pa usar el head de mi plantilla layoud: -->	
+<head th:replace="layout/layout :: head">
+<meta charset="UTF-8">
+</head>
+<body>
+	<!-- CONTENIDO DE LA PAGINA -->
+<section class="nombreClass">
+<div id="layoutSidenav_content" layout:fragment="page-content">
+	<main style="text-align:center">			   
+		<!-- Debo hacer mi CSS aparte pal main -->
+	<header>
+    <!-- Mensajes emergentes en el header -->    
+      <div class="alert alert-success alert-dismissable" th:if="${success != null}">
+          <label th:text="${success}"></label>      
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+      </div>         
+    </header>
+	<div class="content" >
+        <h5 class="text-primary" style="text-align:center">Seleccionar Cliente</h5>
+           <form  class="jx-form" method="get" >
+              <div class="card mb-3">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label>Documento del Cliente</label>
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <input name="cliente-docu" class="form-control" type="text"/>
+                                        </div>
+                                        <div class="col-auto">
+                                            <button class="btn btn-outline-primary" type="submit">
+                                                Buscar        
+                                            </button>     <!-- envia el dato de cliente-doc a su controlador -->
+                                        </div>         
+                                    </div>
+                                </div>
+                            </div>
+               </div>      
+                                               <!-- Que devuelve el obj cliente a esta misma pagina -->
+                  <div th:object="${persona}" class="card">
+                          <div class="card-body">
+                          		<div class="form-group">
+                                    <label>ID de Cliente</label>
+                                    <input th:field="*{idpersona}" class="form-control" type="number" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label>Número de Documento</label>
+                                    <input th:field="*{num_documento}" class="form-control" type="text" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label>Nombres</label>
+                                    <input th:field="*{nombre}" class="form-control" type="text" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label>Apellido Paterno</label>
+                                    <input th:field="*{apaterno}" class="form-control" type="text" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label>Apellido Materno</label>
+                                    <input th:field="*{amaterno}" class="form-control" type="text" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-row">
+                                    <!-- Ojo:por el value puedo pasar valores -->
+                                        <div class="col">
+                                            <a th:href="@{/Consumo/consu_registrar(idper=*{idpersona})}" class="btn btn-primary btn-block">
+                                                Siguiente paso
+                                            </a>
+                                        </div>
+                                        <div class="col-auto">
+                                            <button class="btn btn-outline-info btn-block go-back-btn" type="button">
+                                                Volver atrás
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                  </div>                                      
+           </form>
+   </div>						
+				
+	</main>
+			<!-- PIE DE PAGINA:reemplazalo segun mi layout -->
+	<footer th:replace="layout/layout :: footer"></footer>
+</div>
+</section>
+	
+	<!-- SCRIPTS NECESARIOS PARA ESTA PAGINA especifica AGREGAR AQUI -->
+	<th:block layout:fragment="page-scripts">
+	     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="js/scripts.js"></script>
+               		
+	</th:block>
+	<!-- Scripts:llama al fragment page-scripts del archivo layout.html -->
+        <th:block th:replace="~{/layout/layout::page-scripts}">
+        </th:block>
+</body>
+</html>

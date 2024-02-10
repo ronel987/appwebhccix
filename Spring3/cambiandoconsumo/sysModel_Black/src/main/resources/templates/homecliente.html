@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout}">
+<!-- pa usar el head de mi plantilla layout: -->	
+<head th:replace="layout/layout :: head">
+<meta charset="UTF-8">
+</head>
+<body >
+
+	<!-- CONTENIDO DE LA PAGINA -->
+	<section class="nombreClass">
+		<div id="layoutSidenav_content" layout:fragment="page-content">
+			<main>
+				<div class="container-fluid px-4">
+					<!-- TITULO -->
+					<div class="row">
+						<div class="col-sm-12 text-center mb-3">
+							<div class="page-header">
+								<h2 class="display-6 font-weight-bold text-primary text-center"
+									th:text="${titulo}"></h2>
+							</div>
+						</div>
+					</div>
+
+					<!-- IMAGEN Y DESCRIPCION DEL CONTENIDO DE LA PAGINA-->
+					<div class="row">
+						<div class="col-xs-12 col-sm-4 col-md-3 text-center">
+							<img th:src="@{/images/logoc.png}" alt="logo"
+								class="img-fluid mb-4 mb-md-0 rounded-circle w-50">
+						</div>
+						<div class="col-sm-12 col-md-8 text-justify lead">
+							Bienvenid@ Cliente: 
+							<h4 class="text-danger"  th:text="${usuario}"></h4>
+					
+						</div>
+					</div>
+					
+					<div class="container p-3">
+						<p>
+							Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
+						</p>
+						
+						<p>
+							Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
+						</p>
+											
+					</div>
+
+				</div>
+			</main>
+			<!-- PIE DE PAGINA:reemplazalo segun mi layout -->
+			<footer th:replace="layout/layout :: footer"></footer>
+		</div>
+	</section>
+	<!-- SCRIPTS NECESARIOS PARA ESTA PAGINA especifica AGREGAR AQUI -->
+	<th:block layout:fragment="page-scripts">
+		<script>
+		
+		</script>
+	</th:block>
+
+</body>
+</html>

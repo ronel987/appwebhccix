@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Opciones</title>
+    </head>
+    <body>
+
+        <!-- Opciones habita disponibles x Fecha-->
+        <th:block th:fragment="opciones-habitadispo">
+            <option th:value="null" selected>
+                --Selecciona habitacion--
+            </option>
+            <option th:each="habita : ${habitaciones}"
+                    th:value="${habita.idhabitacion}"
+                    th:text="${habita.numero}">
+            </option>
+        </th:block>
+       <!-- Para capturar el user q se ha logueado-->
+        <th:block th:fragment="usuario-logueado">
+            <span class="small">User: </span>
+            <h6  th:text="${session.getAttribute("idpersona")}"> </h6>
+        </th:block>
+        
+        <!-- Cuando Reserva un cliente: Para mostrar el costo de alojamiento:no funka-->
+        <th:block th:fragment="costo-alojamiento">            
+            <option   th:value="${costoaloja}"  th:text="${costoaloja}" > </option>
+        </th:block>
+        
+        <!-- Para mostrar el costo total al registrar o editar un Alquiler-->
+        <th:block th:fragment="opciones-costototal">
+            <option th:value="${costototal}"  th:text="${costototal}"   >   </option>          
+                
+        </th:block>
+        <!-- Para mostrar la nueva deuda al editar un Alquiler cambieando el costo_aloja-->
+        <th:block th:fragment="opciones-deuda">
+            <option th:value="${deuda}"  th:text="${deuda}"  > </option>                
+        </th:block>
+         <!-- Para mostrar la nueva deudaloja al editar un Alquiler cambieando el costo_aloja-->
+        <th:block th:fragment="opciones-deudaloja">
+            <option th:value="${deudaloja}"  th:text="${deudaloja}"  > </option>                
+        </th:block>
+    </body>
+</html>

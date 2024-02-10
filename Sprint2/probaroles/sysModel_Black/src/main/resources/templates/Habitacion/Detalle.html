@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout}">
+<!-- pa usar el head de mi plantilla layoud: -->	
+<head th:replace="layout/layout :: head">
+<meta charset="UTF-8">
+<style type="text/css"  >
+.content {
+    background-color: #fff;
+    border-top: 1px solid rgba(0,0,0,.125);
+    padding: 1.75rem;
+    text-align:center;
+}
+</style>
+</head>
+<body>
+	<!-- CONTENIDO DE LA PAGINA -->
+<section class="nombreClass">
+<div id="layoutSidenav_content" layout:fragment="page-content">
+	<main style="text-align:center">			   
+		<!-- Debo hacer mi CSS aparte pal main -->
+	<div class="content" >
+        <h4 class="text-primary">Detalle de la Habitación</h4>     
+        <div class="info"  style="text-align:center">
+           <div th:object="${habita}" class="row" >
+                   <div class="col-auto">
+                                <small class="text-muted">
+                                    IdHabitación
+                                </small>
+                         <div th:text="*{idhabitacion}" class="field">    </div>
+                   </div>
+                   <div class="col-auto">
+                                <small class="text-muted">
+                                    Número
+                                </small>
+                                <div th:text="*{numero}" class="field">   </div>
+                  </div>
+                  <div class="col-auto">
+                                <small class="text-muted">
+                                    Piso
+                                </small>
+                                <div th:text="*{piso}" class="field">  </div>
+                  </div>
+                  <div class="col-auto">
+                                <small class="text-muted">
+                                    Descripción
+                                </small>
+                                <div th:text="*{descripcion}" class="field">   </div>
+                            </div>
+                  <div class="col-auto">
+                                <small class="text-muted">
+                                    Características
+                                </small>
+                                <div th:text="*{caracteristicas}" class="field">  </div>
+                  </div>
+                  <div class="col-auto">
+                                <small class="text-muted">
+                                    Tipo de Habitación
+                                </small>
+                                <div th:text="*{tipo_habitacion}" class="field">
+                                </div>
+                  </div>
+                  <div class="col-auto">
+                                <small class="text-muted">
+                                    Precio Diario
+                                </small>
+                                <div th:text="*{precio_diario}" class="field">  </div>
+                  </div>
+                  <div class="col-auto">
+                                <small class="text-muted">
+                                    Estado
+                                </small>
+                                <div th:text="*{estado}" class="field">  </div>
+                  </div> 
+                  <div class="col">
+                       <button class="btn btn-outline-info btn-block go-back-btn" type="button">
+                                   Volver atrás
+                      </button>
+                  </div>                 
+          </div>
+       </div>
+             
+                
+    </div>						
+				
+	</main>
+			<!-- PIE DE PAGINA:reemplazalo segun mi layout -->
+	<footer th:replace="layout/layout :: footer"></footer>
+</div>
+</section>
+	
+	<!-- SCRIPTS NECESARIOS PARA ESTA PAGINA especifica AGREGAR AQUI -->
+	<th:block layout:fragment="page-scripts">
+	     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="js/scripts.js"></script>
+               		
+	</th:block>
+</body>
+</html>

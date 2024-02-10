@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout}">
+<!-- pa usar el head de mi plantilla layoud: -->	
+<head th:replace="layout/layout :: head">
+<meta charset="UTF-8">
+</head>
+<body>
+	<!-- CONTENIDO DE LA PAGINA -->
+<section class="nombreClass">
+<div id="layoutSidenav_content" layout:fragment="page-content">
+	<main style="text-align:center">			   
+		<!-- Debo hacer mi CSS aparte pal main -->
+	<div class="content" >
+       <h4 class="text-primary" style="text-align:center">Editar Imagen</h4>
+        <form th:object="${imagen}" class="jx-form" method="post" enctype="multipart/form-data" >
+           <div class="mb-3">
+                 <label for="exampleFormControlInput1" class="form-label">Ingrese Imagen:</label>
+                <input name="picture" type="file" accept="image/*" class="form-control" id="exampleFormControlInput1" />
+           </div>
+           <div class="mb-3">
+                <label for="exampleFormControlInput2" class="form-label">Elija Habitación:    </label> 
+                <select th:field="*{habitacion}" class="form-control"  >
+                     <option th:each="habitacion : ${bHabita}"
+                         th:value="${habitacion.idhabitacion}" th:text="${habitacion.numero}">
+                     </option>
+                </select>                                                                                       
+           </div>
+           <br><br>
+                                  
+              
+           <div style="text-align: right;">
+                <button type="submit" class="btn btn-primary btn-sm"> Actualizar</button>
+                <button type="button"  class="btn btn-danger go-back-btn btn-sm">Cancelar</button>
+           </div>                          
+                        
+       </form>
+    </div>						
+				
+	</main>
+			<!-- PIE DE PAGINA:reemplazalo segun mi layout -->
+	<footer th:replace="layout/layout :: footer"></footer>
+</div>
+</section>
+	
+	<!-- SCRIPTS NECESARIOS PARA ESTA PAGINA especifica AGREGAR AQUI -->
+	<th:block layout:fragment="page-scripts">
+	     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="js/scripts.js"></script>
+               		
+	</th:block>
+</body>
+</html>

@@ -1,0 +1,3 @@
+Lo usual es usar el servidor Xamp con la bd relacional mysql y usar archivos php q se ponen en el xamp
+para conectar con Android Studio.
+A la vez la bd si se puede conectar con Spring para el app web

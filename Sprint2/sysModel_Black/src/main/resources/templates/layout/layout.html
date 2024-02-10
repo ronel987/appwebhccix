@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head th:fragment="head">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Sistema X">
+  <meta name="author" content="Serfer">
+
+<!-- Favicon -->
+<link rel="shortcut icon" th:href="@{/images/logoc.png}"
+	type="image/x-icon">
+<!-- SECCION PARA HOJAS DE ESTILO -->
+<link th:href="@{/css/material-design-iconic-font.min.css}" rel="stylesheet" >
+<link th:href="@{/css/normalize.css}" rel="stylesheet">
+<link th:href="@{/vendor/css/bootstrap.min.css}" rel="stylesheet">
+<link th:href="@{/vendor/css/style.css}" rel="stylesheet">
+<link th:href="@{/css/styles.css}" rel="stylesheet" />
+
+<title>Hotel Central Chiclayo</title>
+<!-- Agrege solo por la plantilla de Tabla: -->
+    <link th:href="@{https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css}" rel="stylesheet" />        
+    <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js}" crossorigin="anonymous"></script>
+</head>
+<body class="sb-nav-fixed" th:fragment="body(nombre)" >   
+
+	<!-- MENU LATERAL -->
+	<div id="layoutSidenav">	    
+		<div id="layoutSidenav_nav">
+			<nav class="sb-sidenav accordion sb-sidenav-dark"
+				id="sidenavAccordion">
+				<div class="sb-sidenav-menu">
+					<div class="nav">
+												
+						<div class="sb-sidenav-menu-heading">Workers</div>
+						<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+							data-bs-target="#collapseLayouts" aria-expanded="false"
+							aria-controls="collapseLayouts">
+							<div class="sb-nav-link-icon">
+								<i class="fas fa-columns"></i>
+							</div> Reservas
+							<div class="sb-sidenav-collapse-arrow">
+								<i class="fas fa-angle-down"></i>
+							</div>
+						</a>
+						<div class="collapse" id="collapseLayouts"
+							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+							<nav class="sb-sidenav-menu-nested nav">
+								<a class="nav-link" th:href="@{/Reserva/reserva_listar}">Reservas	</a>
+								<a class="nav-link" th:href="@{/Cliente/cliente_listar}">Clientes </a>
+								<a class="nav-link" th:href="@{/Habita/habita_listar}">Habitaciones </a>
+								<a class="nav-link" th:href="@{/Imagen/imagen_listar}">Imagenes </a>
+							</nav>
+						</div>
+						<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+							data-bs-target="#collapsePages" aria-expanded="false"
+							aria-controls="collapsePages">
+							<div class="sb-nav-link-icon">
+								<i class="fas fa-book-open"></i>
+							</div> Ventas
+							<div class="sb-sidenav-collapse-arrow">
+								<i class="fas fa-angle-down"></i>
+							</div>
+						</a>
+						<div class="collapse" id="collapsePages"
+							aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+							<nav class="sb-sidenav-menu-nested nav accordion"
+								id="sidenavAccordionPages">
+								<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+									data-bs-target="#pagesCollapseAuth" aria-expanded="false"
+									aria-controls="pagesCollapseAuth"> Consumos
+									<div class="sb-sidenav-collapse-arrow">
+										<i class="fas fa-angle-down"></i>
+									</div>
+								</a>
+								<div class="collapse" id="pagesCollapseAuth"
+									aria-labelledby="headingOne"
+									data-bs-parent="#sidenavAccordionPages">
+									<nav class="sb-sidenav-menu-nested nav">
+										<a class="nav-link" th:href="@{/Consumo/consumo_listar}">Consumos</a> <a
+											class="nav-link" th:href="@{/Producto/pro_listar}">Pagos</a> <a
+											class="nav-link" th:href="@{/Producto/pro_listar}">Productos</a>
+									</nav>
+								</div>
+								<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+									data-bs-target="#pagesCollapseError" aria-expanded="false"
+									aria-controls="pagesCollapseError"> Trabajadores
+									<div class="sb-sidenav-collapse-arrow">
+										<i class="fas fa-angle-down"></i>
+									</div>
+								</a>
+								<div class="collapse" id="pagesCollapseError"
+									aria-labelledby="headingOne"
+									data-bs-parent="#sidenavAccordionPages">
+									<nav class="sb-sidenav-menu-nested nav">
+										<a class="nav-link"  th:href="@{/Traba/traba_listar}">Trabajadores</a>
+										<a	class="nav-link"  th:href="@{/login}">Login</a>
+										<a	class="nav-link" th:href="@{/register}">Register</a> 
+										<a	class="nav-link" th:href="@{/password}">Password</a>
+									</nav>
+								</div>
+							</nav>
+						</div>
+						<div class="sb-sidenav-menu-heading">Clients</div>
+						<a class="nav-link"  th:href="@{/Clients/misdatos}">
+							<div class="sb-nav-link-icon">
+								<i class="fas fa-chart-area"></i>
+							</div> Datos Personales
+						</a> <a class="nav-link"  th:href="@{/Clients/habitaciones}">
+							<div class="sb-nav-link-icon">
+								<i class="fas fa-table"></i>
+							</div> Habitaciones
+						</a>
+						</a> <a class="nav-link"  th:href="@{/Clients/reservar}">
+							<div class="sb-nav-link-icon">
+								<i class="fas fa-columns"></i>
+							</div> Reservar
+						</a>
+					</div>
+				</div>
+				
+				<div class="sb-sidenav-footer">		
+				    <span> Usuario:</span>			
+					<h6  th:text="|${nombre}|"> </h6>
+				</div>
+			</nav>                                                                        
+		</div>
+		
+		<!-- CONTENIDO DINAMICO PARA TODAS LA PAGINAS DE TU APP:no se repite entre paginas -->
+		<div id="layoutSidenav_content" layout:fragment="page-content" style="top:0px">
+		
+		
+			<!-- PIE DE PAGINA -->
+			<footer th:fragment="footer" class="py-4 bg-light mt-auto">
+				<div class="container-fluid px-4">
+					<div class="d-flex align-items-center justify-content-between small">
+						<div class="text-muted">Copyright &copy; Your Serfer Website 2022</div>
+						<div>
+							<a href="#">Privacy Policy</a> &middot; <a href="#">Terms &amp;
+								Conditions</a>
+						</div>
+					</div>
+				</div>
+			
+			</footer>
+	
+		</div>
+
+	</div>
+	
+	
+	<!--SECCION DE SCRIPTS :enlazando con archivos JS-->
+		<script type="text/javascript" 
+			th:src="@{/vendor/js/all.min.js}"></script>
+		<script type="text/javascript" 
+			th:src="@{/js/alpine.js}"></script>
+		<script type="text/javascript"
+			th:src="@{/vendor/js/bootstrap.bundle.min.js}"></script>
+		<script type="text/javascript" th:src="@{/vendor/js/scripts.js}"></script>
+		<script type="text/javascript"
+			th:src="@{/vendor/js/simple-datatables.js}"></script>
+		<script type="text/javascript"
+			th:src="@{/vendor/js/datatables-simple-demo.js}"></script>
+		<script type="text/javascript" 
+			th:src="@{/js/modernizr.js}"></script>
+			
+	<!-- OTRO SCRIPTS PARA TUS PAGINAS:pa agregar JS q necesites luego -->
+	<th:block th:fragment="page-scripts">	
+	      <script type="application/javascript" th:src="@{/js/index.js}"></script>
+	</th:block>
+	
+
+</body>
+</html>

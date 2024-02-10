@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout}">
+<!-- pa usar el head de mi plantilla layoud: -->	
+<head th:replace="layout/layout :: head">
+<meta charset="UTF-8">
+</head>
+<body>
+	<!-- CONTENIDO DE LA PAGINA -->
+	<section class="nombreClass">
+		<div id="layoutSidenav_content" layout:fragment="page-content">
+			<main>			   
+				<div class="card mb-4">
+                            <div class="card-header">
+                              <div class="row">
+                                  <div class="col">
+                                      <i class="fas fa-table me-1"></i>
+                                      Listado de Reservas
+                                  </div>
+                                   <div class="col" style="text-align:right">
+                                        <a th:href="@{/Reserva/registrar/paso-uno}" class="btn btn-primary btn-sm">
+                                            Registrar Reserva
+                                        </a>
+                                    </div>
+                              </div>
+                            </div>
+                            <div class="card-body">
+                                <table id="datatablesSimple">
+                                    <thead>
+                                        <tr>
+                                            <th>IdReserva</th>
+                                            <th>Tipo</th>
+                                            <th>Fecha de Reserva</th>
+                                            <th>Fecha de Ingreso</th>
+                                            <th>Fecha de Salida</th>
+                                            <th>Costo</th>                                            
+                                            <th>Estado</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>IdReserva</th>
+                                            <th>Tipo</th>
+                                            <th>Fecha de Reserva</th>
+                                            <th>Fecha de Ingreso</th>
+                                            <th>Fecha de Salida</th>
+                                            <th>Costo</th>  
+                                            <th>Estado</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>                                                                     
+                                        <tr th:each="reserva : ${baraja}">                                                                              
+                                        <th:block th:object="${reserva}">
+                                            <th th:text="*{idreserva}" scope="row"></th> 
+                                            <td th:text="*{tipo_reserva}"></td>
+                                            <td th:text="*{fecha_reserva}"></td>
+                                            <td th:text="*{fecha_ingresa}"></td>
+                                            <td th:text="*{fecha_salida}"></td>
+                                            <td th:text="*{costo_alojamiento}"></td>                                            
+                                            <td th:text="*{estado}"> </td>
+                                        </th:block>
+                                        <td th:with="baseUrl = @{/Reserva/{id}(id=${reserva.idreserva})}">
+                                            <div class="form-row">
+                                                <div class="col-auto">
+                                                    <a th:href="|${baseUrl}/reserva_editar|" class="btn btn-success">
+                                                        <i class="fa fa-edit"></i>
+                                                    </a>
+                                                </div>                                            
+                                                <div class="col-auto">
+                                                    <a th:href="|${baseUrl}/reserva_detalle|" class="btn btn-primary">
+                                                        <i class="fa fa-eye"></i>
+                                                    </a>
+                                                </div>                                                                                       
+                                                
+                                            </div>
+                                        </td>                                           
+                                            
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                </div>				
+			</main>
+			<!-- PIE DE PAGINA:reemplazalo segun mi layout -->
+			<footer th:replace="layout/layout :: footer"></footer>
+		</div>
+	</section>
+	<!-- SCRIPTS NECESARIOS PARA ESTA PAGINA especifica AGREGAR AQUI -->
+	<th:block layout:fragment="page-scripts">
+	     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="js/scripts.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+        <script src="js/datatables-simple-demo.js"></script>
+		
+	</th:block>
+
+</body>
+</html>
