@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Error  Producto</title>
+<style type="text/css">
+body {
+margin:120px;
+padding:110px 70px;
+} 
+div {
+margin:35px;
+border:2px solid red;
+padding:25px;
+}
+ h2 {
+ margin:30px;
+ text-align:center; 
+ }
+ button {
+ text-align:center;
+ width:260px;
+ height:35px;
+ background-color:orange;
+ }
+</style>
+</head>
+<body>
+<div>
+<h2>PAGINA DE ERROR AL ELIMINAR </h2>
+<h3>¡¡¡NO PUEDE ELIMINAR PRODUCTOS QUE TIENEN CONSUMOS !!!</h3>
+
+<br><br>
+<a class="nav-link" th:href="@{/Producto/pro_listar}"  >Regresar a Listar Productos</a>
+</div>
+</body>
+</html>

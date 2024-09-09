@@ -1,0 +1,6 @@
+tiene 2 url:
+logintra
+logincli
+falta cambiar el login pa q sea una sola pagina(index)
+q se acceda con la url /hcix   (el archivo war sera hcix.war)
+si funka en tomcat local 9.0.48 con java17 subiendo el war al tomcat

@@ -19,20 +19,26 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `hccix1`
 --
-
+CREATE TABLE IF NOT EXISTS `imagenes` (
+  `imagen_id` int(11) NOT NULL,
+  `file` longblob  NULL,
+   `nombre` varchar(40)  NULL, 
+  `idhabitacion`  int(11) NOT NULL, 
+  PRIMARY KEY (`imagen_id`)  
+);
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `cliente`
 --
-
 CREATE TABLE IF NOT EXISTS `cliente` (
   `idpersona` int(11) NOT NULL,
-  `codigo_cliente` varchar(10) NOT NULL,
-  PRIMARY KEY (`idpersona`),
-  UNIQUE KEY `codigo_cliente_UNIQUE` (`codigo_cliente`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
+  `login` varchar(10)  NULL,
+   `password` varchar(10)  NULL, 
+  `razonsocial` varchar(60) NULL, 
+ `ruc` varchar(11)  NULL, 
+  PRIMARY KEY (`idpersona`)  
+);
 --
 -- Volcado de datos para la tabla `cliente`
 --
@@ -41,22 +47,27 @@ INSERT INTO `cliente` (`idpersona`, `codigo_cliente`) VALUES
 (2, '1');
 
 -- --------------------------------------------------------
-
+CREATE TABLE IF NOT EXISTS `habita_calendario` (
+  `idhabitacion` int(11) NOT NULL ,
+  `idcalendario` int(11) NOT NULL,
+  `estado` varchar(10) NOT NULL,
+  PRIMARY KEY (`idhabitacion`,`idcalendario`) 
+)  ;
 --
 -- Estructura de tabla para la tabla `consumo`
 --
 
 CREATE TABLE IF NOT EXISTS `consumo` (
-  `idconsumo` int(11) NOT NULL AUTO_INCREMENT,
-  `idreserva` int(11) NOT NULL,
+  `idconsumo` int(11) NOT NULL AUTO_INCREMENT, 
   `idproducto` int(11) NOT NULL,
   `cantidad` decimal(7,2) NOT NULL,
-  `precio_venta` decimal(7,2) NOT NULL,
+  `preciototal` decimal(7,2) NOT NULL,
   `estado` varchar(15) NOT NULL,
+   `idalquiler` int(11) NOT NULL,
   PRIMARY KEY (`idconsumo`),
   KEY `fk_consumo_producto_idx` (`idproducto`),
-  KEY `fk_consumo_reserva_idx` (`idreserva`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+  KEY `fk_consumo_alquiler_idx` (`idalquiler`)
+)  ;
 
 --
 -- Volcado de datos para la tabla `consumo`
@@ -98,16 +109,14 @@ INSERT INTO `habitacion` (`idhabitacion`, `numero`, `piso`, `descripcion`, `cara
 --
 
 CREATE TABLE IF NOT EXISTS `pago` (
-  `idpago` int(11) NOT NULL AUTO_INCREMENT,
-  `idreserva` int(11) NOT NULL,
-  `tipo_comprobante` varchar(20) NOT NULL,
-  `num_comprobante` varchar(20) NOT NULL,
-  `igv` decimal(4,2) NOT NULL,
-  `total_pago` decimal(7,2) NOT NULL,
-  `fecha_emision` date NOT NULL,
+  `idpago` int(11) NOT NULL AUTO_INCREMENT,  
+  `tipodepago` varchar(20) NOT NULL,
   `fecha_pago` date NOT NULL,
+  `montopagado` decimal(7,2) NOT NULL,
+  `idconsumo` int(11) NOT NULL,
+  `idalquiler` int(11) NOT NULL,
   PRIMARY KEY (`idpago`),
-  KEY `fk_pago_reserva_idx` (`idreserva`)
+  KEY `fk_pago_alquiler_idx` (`idalquiler`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
@@ -144,8 +153,8 @@ CREATE TABLE IF NOT EXISTS `persona` (
 --
 
 INSERT INTO `persona` (`idpersona`, `nombre`, `apaterno`, `amaterno`, `tipo_documento`, `num_documento`, `direccion`, `telefono`, `email`) VALUES
-(1, 'Juan Carlos', 'Arcila', 'Diaz', 'DNI', '47715777', NULL, NULL, NULL),
-(2, 'Ana', 'Diaz', 'Mundaca', 'DNI', '48596879', 'Chiclayo - Ca. Angamos 34', '98745698', '');
+(1, 'Juan Carlos', 'Arcila', 'Diaz', 'DNI', '47715777', 'san remo 54', '9871120','tr@mail.com'),
+(2, 'Ana', 'Diaz', 'Mundaca', 'DNI', '48596879', 'Chiclayo - Ca. Angamos 34', '98745698', 'po@mail.com');
 
 -- --------------------------------------------------------
 
@@ -180,8 +189,7 @@ CREATE TABLE IF NOT EXISTS `reserva` (
   `idreserva` int(11) NOT NULL AUTO_INCREMENT,
   `idhabitacion` int(11) NOT NULL,
   `idcliente` int(11) NOT NULL,
-  `idtrabajador` int(11) NOT NULL,
-  `tipo_reserva` varchar(20) NOT NULL,
+  `idtrabajador` int(11) NULL,  
   `fecha_reserva` date NOT NULL,
   `fecha_ingresa` date NOT NULL,
   `fecha_salida` date NOT NULL,
